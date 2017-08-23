@@ -1,0 +1,131 @@
+﻿@model SchoolSolution.Web.FrontEnd.ViewModels.TeacherDetailsModel
+@using SchoolSolution.Web.FrontEnd.Models
+@using SchoolSolution.Web.FrontEnd.Code
+
+@{
+    ViewBag.Title = "Professeurs";
+}
+
+<div class="top-buffer"></div>
+<div class="panel panel-primary">
+    <div class="panel-heading panel-head">Détails - Professeur</div>
+    <div class="panel-body">
+
+        <div class="top-buffer"></div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-info">
+                    <div class="panel-heading panel-head"><span class="glyphicon glyphicon-info-sign"></span> Information personel</div>
+                    <div class="pull-right">
+                        <a id="editTeacherModal" data-toggle="modal" data-target="#modal-action-teacher" asp-action="Edit" asp-route-id="@Model.Teacher.Id" class="btn btn-info "><span class="glyphicon glyphicon-pencil"></span> </a>
+                    </div>
+                    <div class="panel-body">
+                        <dl class="dl-horizontal">
+                            <dt>Date de creation</dt>
+                            <dd>@Model.Teacher.CreatedDate.ToString("dd/MM/yyyy")</dd>
+                            <dt>Nom</dt>
+                            <dd>@Model.Teacher.Lastname</dd>
+                            <dt>Post nom et Prénom</dt>
+                            <dd>@Model.Teacher.Firstname</dd>
+                            <dt>Genre</dt>
+                            <dd>
+                                @if (Model.Teacher.Gender == "M")
+                                {
+                                    <text>Masculin</text>
+                                }
+                                else
+                                {
+                                    <text>Feminin</text>
+                                }
+                            </dd>
+                            <dt>Email</dt>
+                            <dd>@Model.Teacher.Email</dd>
+                            <dt>Numéro de Tel</dt>
+                            <dd>@Model.Teacher.PhoneNumber</dd>
+                            <dt>Addrese permanente</dt>
+                            <dd>@Model.Teacher.Address.ToUpper()</dd>
+                            <dt>Salaire</dt>
+                            <dd>@Model.Teacher.Salary</dd>
+
+                        </dl>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-info">
+                    <div class="panel-heading panel-head">
+                        <span class="glyphicon glyphicon-star"></span> Responsabilité
+                    </div>
+                    <div class="pull-right">
+                         @if (Model.Classe == null)
+                            {
+                                <a id="createAssign" data-toggle="modal" data-target="#modal-action-teacher" asp-action="Create" asp-controller="ClassAssign" asp-route-id="@Model.Teacher.Id" class="btn btn-primary"><span class="glyphicon glyphicon-plus-sign"></span></a>
+
+                            }
+                            else
+                            {
+                                <a id="editAssign" data-toggle="modal" data-target="#modal-action-teacher" asp-action="Edit" asp-controller="ClassAssign" asp-route-id="@Model.Teacher.Id" class="btn btn-info">  <span class="glyphicon glyphicon-pencil"></span></a>
+
+
+                            }
+                    </div>
+                
+                <div class="panel-body">
+                    <dl class="dl-horizontal">
+                        <dt>Classe titulaire</dt>
+                        <dd>
+                            @if (Model.Classe != null)
+                            {
+                                @Model.Classe.ToString()
+                            }
+                          
+                        </dd>
+                    </dl>
+                    <div>
+                        <h4>Cours attribués</h4>
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Nom du cours</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Courses)
+                                {
+                                    <tr>
+                                        <td>@item.Name</td>
+                                       
+                                    </tr>
+
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    @if (Model.Courses.Count == 0)
+                    {
+                        <a id="createAssCourse" data-toggle="modal" data-target="#modal-action-teacher" asp-action="Create" asp-controller="CourseAssign" asp-route-id="@Model.Teacher.Id" class="btn btn-primary"><span class="glyphicon glyphicon-book"></span></a>
+
+                    }
+                    else
+                    {
+                        <a id="editAssCourse" data-toggle="modal" data-target="#modal-action-teacher" asp-action="Edit" asp-controller="CourseAssign" asp-route-id="@Model.Teacher.Id" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></a>
+
+
+                    }
+                </div>
+                  </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+@Html.Partial("_Modal", new BootstrapModel { ID = "modal-action-teacher", AreaLabeledId = "modal-action-teacher-label", Size = ModalSize.Medium })
+@section scripts{
+    <scipt src="~/js/teacher-index.js" asp-append-version="true"></scipt>
+}
+

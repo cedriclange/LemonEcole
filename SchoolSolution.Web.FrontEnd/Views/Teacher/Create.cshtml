@@ -1,0 +1,92 @@
+﻿@model SchoolSolution.Infrastructure.Entities.Teacher
+
+@using SchoolSolution.Web.FrontEnd.Models
+@using SchoolSolution.Web.FrontEnd.Code
+
+@{
+    ViewBag.Title = "Professeurs";
+}
+<div class="top-buffer"></div>
+<form asp-action="Create" role="form">
+    @await Html.PartialAsync("_ModalHeader", new ModalHeader { Heading = "Ajouter Professeur" })
+    <div class="modal-body form-horizontal">
+        <div class="row">
+            <div class="container">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Lastname" class="col-md-2 control-label">Nom</label>
+                    <div class="col-md-3">
+                        <input asp-for="Lastname" class="form-control" />
+                        <span asp-validation-for="Lastname" class="text-danger"></span>
+                    </div>
+                </div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Firstname" class="col-md-2 control-label">Post-nom et Prénom</label>
+                    <div class="col-md-3">
+                        <input asp-for="Firstname" class="form-control" />
+                        <span asp-validation-for="Firstname" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Gender" class="col-md-2 control-label">Genre</label>
+                    <div class="col-md-4">
+                        <div class="radio">
+                            <label>
+                                <input asp-for="Gender" type="radio" value="M"> Masculin
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input asp-for="Gender" type="radio" value="F">Feminin
+                            </label>
+                        </div>
+
+                        <span asp-validation-for="Gender" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="HireDate" class="col-md-2 control-label">Date d'engagement</label>
+                    <div class="col-md-2">
+                        <input asp-for="HireDate" type="date" class="form-control" />
+                        <span asp-validation-for="HireDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Address" class="col-md-2 control-label">Addresse</label>
+                    <div class="col-md-4">
+                        <input asp-for="Address" class="form-control" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Email" class="col-md-2 control-label">Email</label>
+                    <div class="col-md-3">
+                        <input asp-for="Email" type="email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PhoneNumber" class="col-md-2 control-label">Numéro Tel.</label>
+                    <div class="col-md-3">
+                        <input asp-for="PhoneNumber" type="number" class="form-control" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Salary" class="col-md-2 control-label">Salaire</label>
+                    <div class="col-md-2">
+                        <input asp-for="Salary" class="form-control" />
+                        <span asp-validation-for="Salary" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @await Html.PartialAsync("_ModalFooter", new ModalFooter { })
+</form>
+
+
+
+

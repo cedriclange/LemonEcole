@@ -1,0 +1,79 @@
+﻿@model SchoolSolution.Web.FrontEnd.ViewModels.CreateStudentViewModel
+
+@using SchoolSolution.Web.FrontEnd.Models
+@using SchoolSolution.Web.FrontEnd.Code
+
+@{
+    ViewBag.Title = "Insciption";
+}
+<div class="top-buffer"></div>
+<form asp-action="Create" role="form">
+    @await Html.PartialAsync("_ModalHeader", new ModalHeader { Heading = "Inscription Elève" })
+    <div class="modal-body form-horizontal">
+        <div class="row">
+            <div class="container">
+                <div class="form-group">
+            <label asp-for="Lastname" class="col-md-2 control-label">Nom</label>
+            <div class="col-md-4">
+                <input asp-for="Lastname" class="form-control" />
+                <span asp-validation-for="Lastname" class="text-danger"></span>
+            </div>
+        </div>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Firstname" class="col-md-2 control-label">Post-nom et Prénom</label>
+            <div class="col-md-4">
+                <input asp-for="Firstname" class="form-control" />
+                <span asp-validation-for="Firstname" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Gender" class="col-md-2 control-label">Genre</label>
+            <div class="col-md-4">
+                <div class="radio">
+                    <label>
+                        <input asp-for="Gender" type="radio" value="M"> Masculin
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input asp-for="Gender" type="radio" value="F"> Feminin
+                    </label>
+                </div>
+
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="DateofBirth" class="col-md-2 control-label">Date de naissance</label>
+            <div class="col-md-2">
+                <input asp-for="DateofBirth" type="date" class="form-control" />
+                <span asp-validation-for="DateofBirth" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Address" class="col-md-2 control-label">Addresse</label>
+            <div class="col-md-4">
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ClassId" class="col-md-2 control-label">Classe</label>
+            <div class="col-md-3">
+                <select asp-for="ClassId" class="form-control" asp-items="ViewBag.ClassId"></select>
+                <span asp-validation-for="ClassId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="StudentNumber" class="col-md-2 control-label">Numéro élève</label>
+            <div class="col-md-2">
+                <input asp-for="StudentNumber" class="form-control" />
+                <span asp-validation-for="StudentNumber" class="text-danger"></span>
+            </div>
+        </div>
+            </div>
+        </div>
+    </div>
+    @await Html.PartialAsync("_ModalFooter", new ModalFooter { })
+</form>

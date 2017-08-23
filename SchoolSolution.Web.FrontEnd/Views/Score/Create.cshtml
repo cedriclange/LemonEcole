@@ -1,0 +1,88 @@
+﻿@model SchoolSolution.Web.FrontEnd.ViewModels.ScoreViewModel
+@{
+    ViewBag.Title = "Encodage côtes";
+}
+<div class="top-buffer"></div>
+<div class="panel panel-primary">
+    <div class="panel-heading">Encodage Côtes</div>
+    <div class="panel-body">
+        <div class="panel panel-warning">
+            <div class="panel-heading">Filtrage</div>
+            <div class="panel-body">
+                <div class="row">
+                    <form asp-action="Create" method="get">
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <label asp-for="ClassId" class="col-md-2 control-label">Classe</label>
+                                <div class="col-md-7">
+                                    <select asp-for="ClassId" asp-items="ViewBag.ClassId" class="form-control"></select>
+
+                                </div>
+                                <input type="submit" value="Filtrer" class="btn btn-success" />
+                            </div>
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div><!--end Filtrage panel-->
+        <form asp-action="Create" method="post">
+            <div class="panel panel-success">
+                <div class="panel-heading">Liste des elèves</div>
+                <div class="panel-body">
+                    <div class="form-inline">
+                        <input asp-for="ClassId" type="hidden" />
+                        <div class="form-group ">
+                                <label asp-for="CourseId" class="col-md-3 control-label">Cours</label>
+                                <div class="col-md-3">
+                                    <select asp-for="CourseId" asp-items="ViewBag.CourseId" class="form-control"></select>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="PeriodId" class="col-md-2 control-label">Periode</label>
+                                <div class="col-md-2">
+                                    <select asp-for="PeriodId" asp-items="ViewBag.PeriodId" class="form-control"></select>
+
+                                </div>
+                            </div>
+                    </div>
+                    <hr />
+                    @if (Model.StudentSubmit != null)
+                    {
+                        <div class="col-md-6">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Noms</th>
+                                        <th>Evaluation</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.StudentSubmit.Count(); i++)
+                                    {
+                                        int position = i + 1;
+                                        <tr>
+                                            <td>@position.ToString()</td>
+                                            <td>@Model.StudentSubmit[i].FullName</td>
+                                            <td>
+                                                <input asp-for="StudentSubmit[i].Score" />
+                                                <input asp-for="StudentSubmit[i].StudentId" type="hidden" />
+                                            </td>
+
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <div class="pull-right">
+                                <input type="submit" value="Encoder" class="btn btn-success" />
+                            </div>
+                        </div>
+                        
+                    }
+                    
+
+                </div>
+            </div>
+        </form>

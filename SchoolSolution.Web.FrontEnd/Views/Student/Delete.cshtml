@@ -1,0 +1,34 @@
+﻿@model SchoolSolution.Infrastructure.Entities.Student
+
+@{
+    ViewData["Title"] = "Elèves";
+}
+
+<h2>Confirmation</h2>
+
+<h3>Etes vous sûre de pouvoir supprimer cet élève?</h3>
+<div>
+    <h4>Détails de l'élève</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="Id" />
+        <dt>Nom</dt>
+        <dd>@Model.Lastname</dd>
+        <dt>Post nom et Prénom</dt>
+        <dd>@Model.Firstname</dd>
+        <dt>Sexe</dt>
+        <dd>@Model.Gender</dd>
+        <dt>Addresse</dt>
+        <dd>@Model.Address</dd>
+        <dt>Date de création</dt>
+        <dd>@Model.CreatedDate.ToString("dd/MM/yyyy")</dd>
+        
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Supprimer" class="btn btn-default" /> |
+            
+        </div>
+    </form>
+</div>
