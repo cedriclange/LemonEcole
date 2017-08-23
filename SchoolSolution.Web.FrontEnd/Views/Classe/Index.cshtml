@@ -1,5 +1,5 @@
 ﻿
-@model SchoolSolution.Web.FrontEnd.ViewModels.ClassIndexModel
+@model List<SchoolSolution.Web.FrontEnd.ViewModels.ClassIndexModel>
 @using SchoolSolution.Web.FrontEnd.Models
 @using SchoolSolution.Web.FrontEnd.Code
 
@@ -18,33 +18,35 @@
 
         </div>
         <div class="top-buffer"></div>
-        <div class="col-md-9">
+        <div class="col-md-12">
             <table class="table table-bordered table-striped table-condensed table-responsive">
                 <thead>
                 <th>#</th>
                 <th>Nom classe</th>
+                <th>Total cours</th>
                 <th>Nom section</th>
                 <th>Action</th>
 
                 </thead>
                 <tbody>
-                    @for (int i = 0; i < Model.classe.Count(); i++)
+                    @for (int i = 0; i < Model.Count(); i++)
                     {
                         int position = i + 1;
                         <tr>
 
                             <td>@position.ToString()</td>
-                            <td>@Model.classe[i].Name</td>
-                            <td>@Model.classe[i].department.Name</td>
+                            <td>@Model[i].classeName</td>
+                            <td>@Model[i].TotalCourses</td>
+                            <td>@Model[i].depName</td>
                             <td>
-                                <a id="editClassModal" data-toggle="modal" asp-action="Edit" asp-route-id="@Model.classe[i].Id" data-target="#modal-action-classe" class="btn btn-info">
+                                <a id="editClassModal" data-toggle="modal" asp-action="Edit" asp-route-id="@Model[i].Id" data-target="#modal-action-classe" class="btn btn-info">
                                     <span class="glyphicon glyphicon-pencil"/> Modifier
                                 </a>
-                                <a asp-action="Details" asp-route-id="@Model.classe[i].Id"
+                                <a asp-action="Details" asp-route-id="@Model[i].Id"
                                    class="btn btn-info">
                                     <span class="glyphicon glyphicon-info-sign" /> Liste Elèves
                                 </a>
-                                <a id="ceateCCModal" data-toggle="modal" asp-action="Create" asp-controller="ClasseCourse" asp-route-id="@Model.classe[i].Id" data-target="#modal-action-classe" class="btn btn-primary">
+                                <a id="ceateCCModal" data-toggle="modal" asp-action="Create" asp-controller="ClasseCourse" asp-route-id="@Model[i].Id" data-target="#modal-action-classe" class="btn btn-primary">
                                     <span class="glyphicon glyphicon-plus"/> Ajouter Cours
                                 </a>
                             </td>

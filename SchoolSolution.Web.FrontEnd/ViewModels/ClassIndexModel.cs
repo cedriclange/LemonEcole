@@ -8,7 +8,9 @@ namespace SchoolSolution.Web.FrontEnd.ViewModels
 {
     public class ClassIndexModel
     {
-        public List<Classe> classe { get; set; }
+        public int Id { get; set; }
+        public string classeName { get; set; }
+        public string depName { get; set; }
         public int TotalCourses { get; set; }
     }
 }

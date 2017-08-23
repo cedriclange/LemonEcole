@@ -8,7 +8,7 @@
     <div class="panel-body">
         
         <div class="top-buffer"></div>
-        <div class="col-md-9">
+        <div class="col-md-7">
             <table class="table table-bordered table-striped table-condensed table-responsive">
                 <thead>
                 <th>#</th>
@@ -43,6 +43,26 @@
 
                 </tbody>
 
+            </table>
+        </div>
+        <div class="col-md-4">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nom du cours</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Courses.Count(); i++)
+                    {
+                        int position = i + 1;
+                        <tr>
+                            <td>@position.ToString()</td>
+                            <td>@Model.Courses[i].Name</td>
+                        </tr>
+                    }
+                </tbody>
             </table>
         </div>
 

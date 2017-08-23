@@ -48,9 +48,10 @@ namespace SchoolSolution.Web.FrontEnd.Controllers
                     return NotFound();
                 }
 
-                ViewData["ClassId"] = new SelectList(cls.GetForDropDown(), "Id", "Name");
-                ViewData["CourseId"] = new SelectList(crs.DropdownForClassId(classId.Value), "Id", "Name");
+                
+                ViewData["CourseId"] = new SelectList(crs.CourseByClassId(classId.Value), "Id", "Name");
             }
+            ViewData["ClassId"] = new SelectList(cls.GetForDropDown(), "Id", "Name");
             return View(model);
         }
         [HttpGet]
@@ -69,7 +70,7 @@ namespace SchoolSolution.Web.FrontEnd.Controllers
                     aModel.Add(st);
                 }
                 model.StudentSubmit = aModel;
-                ViewData["CourseId"] = new SelectList(crs.DropdownForClassId(myModel.ClassId.Value), "Id", "Name");
+                ViewData["CourseId"] = new SelectList(crs.CourseByClassId(myModel.ClassId.Value), "Id", "Name");
 
             }
             

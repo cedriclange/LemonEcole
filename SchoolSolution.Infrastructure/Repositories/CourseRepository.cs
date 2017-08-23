@@ -22,7 +22,7 @@ namespace SchoolSolution.Infrastructure.Repositories
         {
             context.Remove(c);
         }
-        public IQueryable<Course> DropdownForClassId(int id)
+        public IQueryable<Course> CourseByClassId(int id)
         {
             var model = from c in context.Course
                         join cc in context.ClassesCourses

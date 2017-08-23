@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using SchoolSolution.Infrastructure.Repositories;
 using SchoolSolution.Infrastructure.Entities;
 using SchoolSolution.Web.FrontEnd.ViewModels;
-
+using System.Collections.Generic;
 
 namespace SchoolSolution.Web.FrontEnd.Controllers
 {
@@ -17,11 +17,25 @@ namespace SchoolSolution.Web.FrontEnd.Controllers
         private ClassRepository cls = new ClassRepository();
         private DepartmentRepository dep = new DepartmentRepository();
         private StudentRepository stu = new StudentRepository();
+        private CourseRepository crs = new CourseRepository();
         // GET: Classe
         public async Task<IActionResult> Index()
         {
-            var model = new ClassIndexModel();
-            model.classe = await cls.GetAllAsync();
+            var model = new List<ClassIndexModel>();
+
+            var classes = await cls.GetAllAsync();
+            foreach (var item in classes)
+            {
+                var o = new ClassIndexModel()
+                {
+                    Id = item.Id,
+                    classeName = item.Name,
+                    depName  = item.department.Name
+                };
+                o.TotalCourses = crs.CourseByClassId(item.Id).Count();
+                model.Add(o);
+            }
+            
             return View(model);
         }
 
@@ -36,6 +50,7 @@ namespace SchoolSolution.Web.FrontEnd.Controllers
             var model = new ClassDetailsModel();
             model.Students = await stu.GetAllByClassID(id.Value);
             model.NumberofStudent = model.Students.Count();
+            model.Courses = crs.CourseByClassId(id.Value).ToList();
             model.Classe = cls.GetById(id.Value);
             
             if (model == null)
