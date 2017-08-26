@@ -6,14 +6,21 @@ using System.Threading.Tasks;
 using SchoolSolution.Infrastructure.OtherType;
 using SchoolSolution.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using SchoolSolution.Infrastructure.Interfaces;
 
 namespace SchoolSolution.Infrastructure.Repositories
 {
-    public class MatrixRepository
+    public class MatrixRepository :IMatrix
     {
-        private SchoolDbContext context = new SchoolDbContext();
-        private StudentRepository stu = new StudentRepository();
-        private CourseAssignRepository crsa = new CourseAssignRepository();
+        private SchoolDbContext context;
+        private StudentRepository stu;
+        private CourseAssignRepository crsa; 
+        public MatrixRepository(StudentRepository _stu, CourseAssignRepository _crsa, SchoolDbContext ct)
+        {
+            stu = _stu;
+            crsa = _crsa;
+            context = ct;
+        }
 
         //get percentage by class ID
         //public async Task<List<PercentageMatrix>> GetPerfomance(int id)

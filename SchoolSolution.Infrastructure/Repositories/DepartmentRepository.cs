@@ -4,12 +4,20 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using System.Configuration;
+using SchoolSolution.Infrastructure.Interfaces;
 
 namespace SchoolSolution.Infrastructure.Repositories
 {
-    public class DepartmentRepository : IRepository
+    public class DepartmentRepository :  IDepartment
     {
-        private  SchoolDbContext context = new SchoolDbContext();
+        private readonly SchoolDbContext context;
+        public DepartmentRepository(SchoolDbContext ctx)
+        {
+            //var optionsBuilder = new DbContextOptionsBuilder<SchoolDbContext>();
+            //optionsBuilder.UseSqlServer(@"Data Source=(localdb)\ProjectsV13;Initial Catalog=SchoolContext.db;Integrated Security=True");
+            context = ctx;
+        }
 
         public async Task<int> CountDepartmentAsync()
         {

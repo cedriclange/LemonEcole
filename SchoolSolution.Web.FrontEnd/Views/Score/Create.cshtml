@@ -20,7 +20,7 @@
                                 </div>
                                 <input type="submit" value="Filtrer" class="btn btn-success" />
                             </div>
-                            
+
                         </div>
                     </form>
                 </div>
@@ -33,19 +33,19 @@
                     <div class="form-inline">
                         <input asp-for="ClassId" type="hidden" />
                         <div class="form-group ">
-                                <label asp-for="CourseId" class="col-md-3 control-label">Cours</label>
-                                <div class="col-md-3">
-                                    <select asp-for="CourseId" asp-items="ViewBag.CourseId" class="form-control"></select>
+                            <label asp-for="CourseId" class="col-md-3 control-label">Cours</label>
+                            <div class="col-md-3">
+                                <select asp-for="CourseId" asp-items="ViewBag.CourseId" class="form-control"></select>
 
-                                </div>
                             </div>
-                            <div class="form-group">
-                                <label asp-for="PeriodId" class="col-md-2 control-label">Periode</label>
-                                <div class="col-md-2">
-                                    <select asp-for="PeriodId" asp-items="ViewBag.PeriodId" class="form-control"></select>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="PeriodId" class="col-md-2 control-label">Periode</label>
+                            <div class="col-md-2">
+                                <select asp-for="PeriodId" asp-items="ViewBag.PeriodId" class="form-control"></select>
 
-                                </div>
                             </div>
+                        </div>
                     </div>
                     <hr />
                     @if (Model.StudentSubmit != null)
@@ -56,6 +56,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Noms</th>
+                                        @*<th id="#moyen"></th>*@
                                         <th>Evaluation</th>
                                     </tr>
                                 </thead>
@@ -66,6 +67,7 @@
                                         <tr>
                                             <td>@position.ToString()</td>
                                             <td>@Model.StudentSubmit[i].FullName</td>
+                                            @*<td id="#moyenValue"></td>*@
                                             <td>
                                                 <input asp-for="StudentSubmit[i].Score" />
                                                 <input asp-for="StudentSubmit[i].StudentId" type="hidden" />
@@ -79,10 +81,12 @@
                                 <input type="submit" value="Encoder" class="btn btn-success" />
                             </div>
                         </div>
-                        
+
                     }
-                    
+
 
                 </div>
             </div>
         </form>
+    </div>
+</div>

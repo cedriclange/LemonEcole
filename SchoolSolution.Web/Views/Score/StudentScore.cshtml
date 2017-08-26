@@ -1,0 +1,51 @@
+﻿@model SchoolSolution.Web.ViewModels.StudentScoreViewModel
+
+@{
+    ViewBag.Title = "Côtes";
+}
+<div class="top-buffer"></div>
+<div class="panel panel-primary">
+    <div class="panel-heading">Détails - Côtes</div>
+    <div class="panel-body">
+        @if (ViewBag.message == "null")
+        {
+            <h2>Aucun données enregistrer</h2>
+        }
+        else
+        {
+            <h2>@Model.Student.FullName</h2>
+            <hr />
+
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>1er P</th>
+                        <th>2eme P</th>
+                        <th>Exam I</th>
+                        <th>3eme P</th>
+                        <th>4eme P</th>
+                        <th>Exam II</th>
+                       
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.SSM)
+                    {
+                        <tr>
+                            <td>@item.CourseName</td>
+                            @foreach (var value in item.MatrixData)
+                            {
+                                <td>@value.Score</td>
+                            }
+                            
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+
+
+    </div>
+</div>

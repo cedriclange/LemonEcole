@@ -18,7 +18,7 @@ namespace SchoolSolution.Web.FrontEnd.Controllers
             OverViewModel model = new OverViewModel();
             model.DepCount = await dep.CountDepartmentAsync();
             model.ClassCount = await classe.CountClass(null);
-            model.StudentCount = await stu.CountStudent();
+            model.StudentCount = await stu.CountStudentAsync();
             model.TeacherCount = await th.CountTeacherAsync();
            
             return View(model);

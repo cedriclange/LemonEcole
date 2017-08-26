@@ -7,12 +7,17 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using SchoolSolution.Infrastructure.Interfaces;
 
 namespace SchoolSolution.Infrastructure.Repositories
 {
-    public class CourseAssignRepository : IRepository
+    public class CourseAssignRepository : ICourseAssignement
     {
-        private SchoolDbContext context = new SchoolDbContext();
+        SchoolDbContext context;
+        public CourseAssignRepository(SchoolDbContext ctx)
+        {
+            context = ctx;
+        }
         public async Task SaveChangesAsync()
         {
             await context.SaveChangesAsync();

@@ -21,12 +21,16 @@
         <div class="col-md-9">
             <table class="table table-bordered table-striped table-condensed table-responsive">
                 <thead>
-                <th>#</th>
-                <th>Désciption</th>
-                <th>Moyenne total</th>
-                <th>Section</th>
-                <th>Action</th>
+                    <tr>
+                        <th>#</th>
+                        <th>Désciption</th>
 
+                        <th>Moyenne total</th>
+                        <th>Section</th>
+                        <th>Action</th>
+
+                    </tr>
+                    
                 </thead>
                 <tbody>
                     @for (int i = 0; i < Model.Count(); i++)
@@ -36,6 +40,7 @@
 
                             <td>@position.ToString()</td>
                             <td>@Model[i].Name</td>
+                           
                             <td>@Model[i].TotalAverage</td>
                             <td>@Model[i].department.Name</td>
                             <td>

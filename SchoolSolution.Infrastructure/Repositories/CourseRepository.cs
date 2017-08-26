@@ -4,12 +4,17 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SchoolSolution.Infrastructure.Data;
 using SchoolSolution.Infrastructure.Entities;
+using SchoolSolution.Infrastructure.Interfaces;
 
 namespace SchoolSolution.Infrastructure.Repositories
 {
-    public class CourseRepository : IRepository
+    public class CourseRepository : ICourse
     {
-        private SchoolDbContext context = new SchoolDbContext();
+        SchoolDbContext context;
+        public CourseRepository(SchoolDbContext ctx)
+        {
+            context = ctx;
+        }
         public async Task SaveChangesAsync()
         {
             await context.SaveChangesAsync();

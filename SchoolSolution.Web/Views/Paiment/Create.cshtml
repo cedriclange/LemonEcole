@@ -1,0 +1,58 @@
+﻿@model SchoolSolution.Web.ViewModels.CreatePaiementModel
+@using SchoolSolution.Web.Code
+@using SchoolSolution.Web.Models
+@{
+    ViewData["Title"] = "Payement";
+}
+
+
+
+<form asp-action="Create" role="form">
+    @await Html.PartialAsync("_ModalHeader", new ModalHeader { Heading = "Nouveau Payement" })
+    <div class="modal-body form-horizontal">
+        <div class="row">
+            <div class="container">
+                <input type="hidden" asp-for="ActionFrom" />
+                <input type="hidden" asp-for="StudentID" />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="DateofPaiement" class="col-md-2 control-label">Date de paiement</label>
+                    <div class="col-md-3">
+                        <input asp-for="DateofPaiement" class="form-control" type="date" />
+                        <span asp-validation-for="DateofPaiement" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="StudentNumber" class="col-md-2 control-label">Numéro elève</label>
+                    <div class="col-md-3">
+                        <input asp-for="StudentNumber" class="form-control" />
+                        <span asp-validation-for="StudentNumber" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Type" class="col-md-2 control-label">Type de frais</label>
+                    <div class="col-md-3">
+                        <select asp-for="Type" class="form-control" asp-items="ViewBag.Type"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Period" class="col-md-2 control-label">Paiement de periode</label>
+                    <div class="col-md-3">
+                        <select asp-for="Period" class="form-control" asp-items="ViewBag.MonthId"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Amount" class="col-md-2 control-label"></label>
+                    <div class="col-md-3">
+                        <input asp-for="Amount" class="form-control" />
+                        <span asp-validation-for="Amount" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @await  Html.PartialAsync("_ModalFooter", new ModalFooter { })
+</form>
+
+
+

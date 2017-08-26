@@ -6,6 +6,12 @@ namespace SchoolSolution.Infrastructure.Data
 {
     public class SchoolDbContext : DbContext
     {
+       
+        public SchoolDbContext(DbContextOptions<SchoolDbContext> options) : base(options)
+        {
+
+        }
+        
         public virtual DbSet<Classe> Classe { get; set; }
         public virtual DbSet<Course> Course { get; set; }
         public virtual DbSet<Department> Department { get; set; }

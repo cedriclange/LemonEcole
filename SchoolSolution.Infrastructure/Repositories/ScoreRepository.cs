@@ -1,5 +1,7 @@
-﻿using SchoolSolution.Infrastructure.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SchoolSolution.Infrastructure.Data;
 using SchoolSolution.Infrastructure.Entities;
+using SchoolSolution.Infrastructure.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,9 +9,18 @@ using System.Threading.Tasks;
 
 namespace SchoolSolution.Infrastructure.Repositories
 {
-    public class ScoreRepository : IRepository
+    public class ScoreRepository : IScore
     {
-        private SchoolDbContext context = new SchoolDbContext();
+        
+        private readonly SchoolDbContext context;
+        public ScoreRepository(SchoolDbContext options)
+        {
+            context = options;
+        }
+       
+           
+
+        
         public async Task SaveChangesAsync()
         {
            await  context.SaveChangesAsync();

@@ -1,0 +1,77 @@
+﻿@model SchoolSolution.Web.ViewModels.StudentDetailsModel
+@using SchoolSolution.Web.Models
+@using SchoolSolution.Web.Code
+
+@{
+    ViewBag.Title = "Professeurs";
+}
+
+<div class="top-buffer"></div>
+<div class="panel panel-primary">
+    <div class="panel-heading panel-head">Détails - Elève</div>
+    <div class="panel-body">
+
+        <div class="top-buffer"></div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-info">
+                    <div class="panel-heading panel-head"><span class="glyphicon glyphicon-info-sign"></span> Information personel</div>
+                    <div class="pull-right">
+                        <a id="editStudentModal" data-toggle="modal" data-target="#modal-action-student" asp-action="Edit" asp-route-id="@Model.Student.Id" class="btn btn-info "><span class="glyphicon glyphicon-pencil"></span> </a>
+                        <a id="deleteStudent" data-toggle="modal" data-target="#modal-action-student" asp-action="Delete" asp-route-id="@Model.Student.Id" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+                    </div>
+                    <div class="panel-body">
+                        <dl class="dl-horizontal">
+                            <dt>Nom</dt>
+                            <dd>@Model.Student.Lastname</dd>
+                            <dt>Post-nom et Prénom</dt>
+                            <dd>@Model.Student.Firstname</dd>
+                            <dt>Genre</dt>
+                            <dd>
+                                @if (Model.Student.Gender == "M")
+                                {
+                                    <text>Masculin</text>
+                                }
+                                else
+                                {
+                                    <text>Feminin</text>
+                                }
+                            </dd>
+                            <dt>date de naissance</dt>
+                            <dd>@Model.Student.DateofBirth.ToString("dd/MM/yyyy")</dd>
+                            <dt>Addresse</dt>
+                            <dd>@Model.Student.Address</dd>
+                            <dt>Classe</dt>
+                            <dd>@Model.className</dd>
+
+
+                        </dl>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-info">
+                    <div class="panel-heading panel-head">
+                        <span class="glyphicon glyphicon-bullhorn"></span> Access rapide
+                    </div>
+
+                    <div class="panel-body">
+
+                        <a asp-action="PayHistoric" asp-controller="Paiment" asp-route-id="@Model.Student.Id" class="btn-lg btn-justified btn-success">Historique Frais</a>
+                        <a asp-action="StudentScore" asp-controller="Score" asp-route-id="@Model.Student.Id" class="btn-lg btn-primary">voir les côtes</a>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Partial("_Modal", new BootstrapModel { ID = "modal-action-student", AreaLabeledId = "modal-action-student-label", Size = ModalSize.Medium })
+@section scripts{
+    <scipt src="~/js/student-index.js" asp-append-version="true"></scipt>
+}
+
+

@@ -1,0 +1,66 @@
+﻿@model List<SchoolSolution.Web.ViewModels.DepatViewModel>
+@using SchoolSolution.Web.Models
+@using SchoolSolution.Web.Code
+
+@{
+    ViewBag.Title = "Sections";
+}
+
+<div class="top-buffer"></div>
+<div class="panel panel-primary">
+    <div class="panel-heading panel-head">Sections</div>
+    <div class="panel-body">
+        <div class="btn-group">
+            <a id="createDepartmentModal" data-toggle="modal" asp-action="Create" data-target="#modal-action-department" class="btn btn-primary">
+                 <span class="glyphicon glyphicon-plus"></span>  Ajouter Section
+            </a>
+
+        </div>
+        <div class="top-buffer"></div>
+        <table class="table table-bordered table-striped table-condensed table-responsive">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nom section</th>
+                    <th>Total Classes</th>
+                    <th>Total Cours</th>
+                    <th>action</th>
+                </tr>
+                            
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Count(); i++)
+                {
+                    int position = i + 1;
+                    <tr>
+                        
+                        <td>@position.ToString()</td>
+                        <td>@Model[i].Name</td>
+                        <td>@Model[i].TotalClasses</td>
+                        <td>@Model[i].TotalCours</td>
+                        <td>
+                            @*<a id="editdepartmentmodal" data-toggle="modal" asp-action="edit" asp-route-id="@model[i].id" data-target="#modal-action-department"
+                               class="btn btn-info">
+                                <span class="glyphicon glyphicon-pencil"/> modifier
+                            </a>*@
+                            <a asp-action="Details" asp-route-id="@Model[i].Id" 
+                               class="btn btn-info">
+                                <span class="glyphicon glyphicon-info-sign"/> Détails
+                            </a>
+                        </td>
+
+                    </tr>
+                } 
+
+                   
+               
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
+@Html.Partial("_Modal", new BootstrapModel { ID="modal-action-department",AreaLabeledId="modal-action-department-label", Size =ModalSize.Medium})
+@section scripts{
+    <scipt src="~/js/department-index.js" asp-append-version="true"></scipt>
+}

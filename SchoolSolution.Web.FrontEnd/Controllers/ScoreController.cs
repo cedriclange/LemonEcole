@@ -41,7 +41,8 @@ namespace SchoolSolution.Web.FrontEnd.Controllers
         {
             var model = new AllScoreViewModel();
             if (classId != null)
-            {                
+            {
+                ViewData["CourseId"] = new SelectList(crs.CourseByClassId(classId.Value), "Id", "Name");             
                 model.SM = mx.GetAll(classId.Value, courseId.Value);
                 if (model == null)
                 {
@@ -49,7 +50,7 @@ namespace SchoolSolution.Web.FrontEnd.Controllers
                 }
 
                 
-                ViewData["CourseId"] = new SelectList(crs.CourseByClassId(classId.Value), "Id", "Name");
+                
             }
             ViewData["ClassId"] = new SelectList(cls.GetForDropDown(), "Id", "Name");
             return View(model);

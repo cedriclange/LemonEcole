@@ -4,12 +4,18 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using SchoolSolution.Infrastructure.Interfaces;
 
 namespace SchoolSolution.Infrastructure.Repositories
 {
-    public class ClassRepository : IRepository
+    public class ClassRepository : IClass
+
     {
-        private SchoolDbContext context = new SchoolDbContext();
+        SchoolDbContext context;
+        public ClassRepository(SchoolDbContext ctx)
+        {
+            context = ctx;
+        }
 
         //count nu;ber of classes in the database
         public async Task<int> CountClass(int? id)
