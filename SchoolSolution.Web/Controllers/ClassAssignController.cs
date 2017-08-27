@@ -40,7 +40,8 @@ namespace SchoolSolution.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                
+                if (!clsa.IfExists(model.TeacherId))
+                {
                     var assign = new ClassAssignement();
                     assign.ClassId = model.ClassId;
                     assign.TeacherId = model.TeacherId;
@@ -49,6 +50,9 @@ namespace SchoolSolution.Web.Controllers
 
                     return RedirectToAction("Details", new RouteValueDictionary(
                         new {Controller="Teacher", action="Details", Id = model.TeacherId }));
+                }
+                
+                   
                 
             }
             DropDownList(model.ClassId);
@@ -78,14 +82,18 @@ namespace SchoolSolution.Web.Controllers
             {
                 try
                 {
-                    var assign = await clsa.GetByTeacherIdAsync(model.TeacherId);
-                    assign.ClassId = model.ClassId;
-                    assign.TeacherId = model.TeacherId;
-                    clsa.Update(assign);
-                    await clsa.SaveChangesAsync();
+                    if (clsa.IfExists(model.TeacherId))
+                    {
+                        var assign = await clsa.GetByTeacherIdAsync(model.TeacherId);
+                        assign.ClassId = model.ClassId;
+                        assign.TeacherId = model.TeacherId;
+                        clsa.Update(assign);
+                        await clsa.SaveChangesAsync();
 
-                    return RedirectToAction("Details", new RouteValueDictionary(
-                        new { Controller = "Teacher", action = "Details", Id = model.TeacherId }));
+                        return RedirectToAction("Details", new RouteValueDictionary(
+                            new { Controller = "Teacher", action = "Details", Id = model.TeacherId }));
+                        }
+                    
                 }
                 catch(DbUpdateConcurrencyException)
                 {

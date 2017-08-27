@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using SchoolSolution.Infrastructure.Entities;
-
-
+using Microsoft.EntityFrameworkCore;
 
 namespace SchoolSolution.Infrastructure.Data
 {
@@ -9,8 +8,8 @@ namespace SchoolSolution.Infrastructure.Data
     {
         public static void Initialize(SchoolDbContext ctx)
         {
-            //ctx.Database.EnsureDeleted();
-            //ctx.Database.EnsureCreated();
+            ctx.Database.EnsureDeleted();
+            ctx.Database.EnsureCreated();
             if (ctx.PaimentType.Any())
             {
                 return;

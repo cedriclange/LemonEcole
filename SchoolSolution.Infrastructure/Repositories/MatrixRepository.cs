@@ -10,15 +10,15 @@ using SchoolSolution.Infrastructure.Interfaces;
 
 namespace SchoolSolution.Infrastructure.Repositories
 {
-    public class MatrixRepository :IMatrix
+    public class MatrixRepository : IMatrix
     {
         private SchoolDbContext context;
-        private StudentRepository stu;
-        private CourseAssignRepository crsa; 
-        public MatrixRepository(StudentRepository _stu, CourseAssignRepository _crsa, SchoolDbContext ct)
+        IStudent stu;
+        
+        public MatrixRepository(IStudent _stu, SchoolDbContext ct)
         {
             stu = _stu;
-            crsa = _crsa;
+            
             context = ct;
         }
 
