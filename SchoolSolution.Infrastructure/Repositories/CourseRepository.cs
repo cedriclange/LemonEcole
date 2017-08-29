@@ -27,14 +27,14 @@ namespace SchoolSolution.Infrastructure.Repositories
         {
             context.Remove(c);
         }
-        public IQueryable<Course> CourseByClassId(int id)
+        public IEnumerable<Course> CourseByClassId(int id)
         {
             var model = from c in context.Course
                         join cc in context.ClassesCourses
                         on c.Id equals cc.CourseId
                         where cc.ClassId == id
                         select c;
-            return model;
+            return model.ToList();
         }
         public bool IfExists(string name, int? id)
         {

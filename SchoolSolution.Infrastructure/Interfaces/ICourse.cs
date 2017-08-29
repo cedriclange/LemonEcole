@@ -12,7 +12,7 @@ namespace SchoolSolution.Infrastructure.Interfaces
         void Add(Course c);
         void Update(Course c);
         void Remove(Course c);
-        IQueryable<Course> CourseByClassId(int id);
+        IEnumerable<Course> CourseByClassId(int id);
         bool IfExists(string name, int? id);
         List<Course> GetAll();
         Course GetById(int id);

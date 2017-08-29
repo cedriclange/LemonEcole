@@ -46,24 +46,34 @@ namespace SchoolSolution.Web.Controllers
             }
             return View(model);
         }
-
+        [HttpGet]
         public IActionResult Index(int? classId, int? courseId)
         {
             var model = new AllScoreViewModel();
-            if (classId != null)
+            if (classId != null && courseId != null)
             {
-                ViewData["CourseId"] = new SelectList(crs.CourseByClassId(classId.Value), "Id", "Name");
+                
                 model.SM = mx.GetAll(classId.Value, courseId.Value);
                 if (model == null)
                 {
                     return NotFound();
                 }
-
-
-
             }
-            ViewData["ClassId"] = new SelectList(cls.GetForDropDown(), "Id", "Name");
+            var classes = new List<Classe>();
+            classes = cls.GetForDropDown().ToList();
+            classes.Insert(0,new Classe{Id=0,Name="Selectionner"});
+            ViewData["ClassId"] = new SelectList(classes,"Id","Name",0);
             return View(model);
+        }
+        [HttpGet]
+        public ActionResult GetCourses(int id)
+        {
+            
+            var model = crs.CourseByClassId(id);
+            
+            
+            return Json(model);
+
         }
         [HttpGet]
         public async Task<IActionResult> Create(ScoreViewModel myModel)
