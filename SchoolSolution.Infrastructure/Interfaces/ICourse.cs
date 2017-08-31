@@ -1,26 +1,3 @@
-<<<<<<< Updated upstream
-﻿using SchoolSolution.Infrastructure.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SchoolSolution.Infrastructure.Interfaces
-{
-    public interface ICourse :IRepository
-    {
-        void Add(Course c);
-        void Update(Course c);
-        void Remove(Course c);
-        IEnumerable<Course> CourseByClassId(int id);
-        bool IfExists(string name, int? id);
-        List<Course> GetAll();
-        Course GetById(int id);
-        Task<List<Course>> GetTaughtByTeacherId(int id);
-    }
-}
-=======
 ﻿using SchoolSolution.Infrastructure.Entities;
 using System;
 using System.Collections.Generic;
@@ -42,4 +19,3 @@ namespace SchoolSolution.Infrastructure.Interfaces
         Task<List<Course>> GetTaughtByTeacherId(int id);
     }
 }
->>>>>>> Stashed changes

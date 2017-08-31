@@ -27,11 +27,7 @@ namespace SchoolSolution.Infrastructure.Repositories
         {
             context.Remove(c);
         }
-<<<<<<< Updated upstream
-        public IEnumerable<Course> CourseByClassId(int id)
-=======
         public List<Course> CourseByClassId(int id)
->>>>>>> Stashed changes
         {
             var model = from c in context.Course
                         join cc in context.ClassesCourses

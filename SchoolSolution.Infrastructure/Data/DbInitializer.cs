@@ -8,10 +8,7 @@ namespace SchoolSolution.Infrastructure.Data
     {
         public static void Initialize(SchoolDbContext ctx)
         {
-<<<<<<< Updated upstream
-=======
             //ctx.Database.EnsureDeleted();
->>>>>>> Stashed changes
             ctx.Database.Migrate();
             if (ctx.PaimentType.Any())
             {
