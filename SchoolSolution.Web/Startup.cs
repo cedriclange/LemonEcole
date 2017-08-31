@@ -27,7 +27,7 @@ namespace SchoolSolution.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDbContext<SchoolDbContext>(options=>
+            services.AddDbContext<SchoolDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("SchoolSolution")));
             //Add All my services
             services.AddScoped<IDepartment, DepartmentRepository>();

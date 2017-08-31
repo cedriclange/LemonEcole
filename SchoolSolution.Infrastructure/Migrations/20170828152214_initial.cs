@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Metadata;
+using System;
+using System.Collections.Generic;
 
 namespace SchoolSolution.Infrastructure.Migrations
 {
-    public partial class Initialdb : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,10 +13,10 @@ namespace SchoolSolution.Infrastructure.Migrations
                 name: "ClassAssignement",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ClassId = table.Column<int>(nullable: false),
-                    TeacherId = table.Column<int>(nullable: false)
+                    ClassId = table.Column<int>(type: "int", nullable: false),
+                    TeacherId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -27,9 +27,10 @@ namespace SchoolSolution.Infrastructure.Migrations
                 name: "Department",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    DateCreated = table.Column<DateTime>(type: "date", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "date", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "date", nullable: false),
                     Name = table.Column<string>(type: "varchar(50)", nullable: false)
                 },
                 constraints: table =>
@@ -41,11 +42,11 @@ namespace SchoolSolution.Infrastructure.Migrations
                 name: "Enrollement",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ClassID = table.Column<int>(nullable: false),
-                    EnrollementDate = table.Column<DateTime>(nullable: false),
-                    StudentID = table.Column<int>(nullable: false)
+                    ClassID = table.Column<int>(type: "int", nullable: false),
+                    EnrollementDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    StudentID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -56,7 +57,7 @@ namespace SchoolSolution.Infrastructure.Migrations
                 name: "PaiementFor",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Month = table.Column<string>(type: "varchar(30)", nullable: true)
                 },
@@ -69,7 +70,7 @@ namespace SchoolSolution.Infrastructure.Migrations
                 name: "PaimentType",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Description = table.Column<string>(type: "varchar(100)", nullable: true)
                 },
@@ -82,22 +83,23 @@ namespace SchoolSolution.Infrastructure.Migrations
                 name: "People",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Address = table.Column<string>(type: "varchar(200)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "date", nullable: false),
-                    Discriminator = table.Column<string>(nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Firstname = table.Column<string>(type: "varchar(100)", nullable: false),
                     Gender = table.Column<string>(type: "char(1)", nullable: false),
                     Lastname = table.Column<string>(type: "varchar(100)", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateofBirth = table.Column<DateTime>(type: "date", nullable: true),
-                    IsEnrolled = table.Column<bool>(nullable: true),
-                    Photo = table.Column<byte[]>(nullable: true),
+                    IsEnrolled = table.Column<bool>(type: "bit", nullable: true),
+                    Photo = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     StudentNumber = table.Column<string>(type: "varchar(100)", nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    HireDate = table.Column<DateTime>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: true),
-                    Salary = table.Column<decimal>(nullable: true)
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    HireDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Salary = table.Column<decimal>(type: "decimal(18, 2)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -108,7 +110,7 @@ namespace SchoolSolution.Infrastructure.Migrations
                 name: "Period",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(type: "varchar(30)", nullable: true)
                 },
@@ -121,9 +123,9 @@ namespace SchoolSolution.Infrastructure.Migrations
                 name: "Classe",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    DepartmentID = table.Column<int>(nullable: false),
+                    DepartmentID = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "varchar(50)", nullable: false)
                 },
                 constraints: table =>
@@ -141,11 +143,11 @@ namespace SchoolSolution.Infrastructure.Migrations
                 name: "Course",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    DepartmentID = table.Column<int>(nullable: false),
+                    DepartmentID = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "varchar(50)", nullable: false),
-                    TotalAverage = table.Column<double>(nullable: false)
+                    TotalAverage = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -162,13 +164,13 @@ namespace SchoolSolution.Infrastructure.Migrations
                 name: "Paiment",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Amount = table.Column<decimal>(nullable: false),
-                    MonthId = table.Column<int>(nullable: false),
-                    PaidOn = table.Column<DateTime>(nullable: false),
-                    StudentID = table.Column<int>(nullable: false),
-                    Type = table.Column<int>(nullable: false)
+                    Amount = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
+                    MonthId = table.Column<int>(type: "int", nullable: false),
+                    PaidOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    StudentID = table.Column<int>(type: "int", nullable: false),
+                    Type = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -197,10 +199,11 @@ namespace SchoolSolution.Infrastructure.Migrations
                 name: "Percentage",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    PeriodID = table.Column<int>(nullable: false),
-                    StudentID = table.Column<int>(nullable: false)
+                    Percent = table.Column<double>(type: "float", nullable: false),
+                    PeriodID = table.Column<int>(type: "int", nullable: false),
+                    StudentID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -220,15 +223,39 @@ namespace SchoolSolution.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CourseAssignement",
+                name: "ClassesCourses",
                 columns: table => new
                 {
-                    TeaherId = table.Column<int>(nullable: false),
-                    CourseId = table.Column<int>(nullable: false)
+                    ClassId = table.Column<int>(type: "int", nullable: false),
+                    CourseId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CourseAssignement", x => new { x.TeaherId, x.CourseId });
+                    table.PrimaryKey("PK_ClassesCourses", x => new { x.ClassId, x.CourseId });
+                    table.ForeignKey(
+                        name: "FK_ClassesCourses_Classe_ClassId",
+                        column: x => x.ClassId,
+                        principalTable: "Classe",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ClassesCourses_Course_CourseId",
+                        column: x => x.CourseId,
+                        principalTable: "Course",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CourseAssignement",
+                columns: table => new
+                {
+                    TeacherId = table.Column<int>(type: "int", nullable: false),
+                    CourseId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CourseAssignement", x => new { x.TeacherId, x.CourseId });
                     table.ForeignKey(
                         name: "FK_CourseAssignement_Course_CourseId",
                         column: x => x.CourseId,
@@ -236,8 +263,8 @@ namespace SchoolSolution.Infrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CourseAssignement_People_TeaherId",
-                        column: x => x.TeaherId,
+                        name: "FK_CourseAssignement_People_TeacherId",
+                        column: x => x.TeacherId,
                         principalTable: "People",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -247,17 +274,25 @@ namespace SchoolSolution.Infrastructure.Migrations
                 name: "Score",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CourseID = table.Column<int>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    PeriodID = table.Column<int>(nullable: false),
-                    Point = table.Column<double>(nullable: false),
-                    StudentID = table.Column<int>(nullable: false)
+                    ClassId = table.Column<int>(type: "int", nullable: false),
+                    CourseID = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PeriodID = table.Column<int>(type: "int", nullable: false),
+                    Point = table.Column<double>(type: "float", nullable: false),
+                    StudentID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Score", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Score_Classe_ClassId",
+                        column: x => x.ClassId,
+                        principalTable: "Classe",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Score_Course_CourseID",
                         column: x => x.CourseID,
@@ -279,12 +314,17 @@ namespace SchoolSolution.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_DepartmentID",
+                name: "IX_Classe_DepartmentID",
                 table: "Classe",
                 column: "DepartmentID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DepartmentID",
+                name: "IX_ClassesCourses_CourseId",
+                table: "ClassesCourses",
+                column: "CourseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Course_DepartmentID",
                 table: "Course",
                 column: "DepartmentID");
 
@@ -309,11 +349,6 @@ namespace SchoolSolution.Infrastructure.Migrations
                 column: "Type");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StudentNum",
-                table: "People",
-                column: "StudentNumber");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Percentage_PeriodID",
                 table: "Percentage",
                 column: "PeriodID");
@@ -322,6 +357,11 @@ namespace SchoolSolution.Infrastructure.Migrations
                 name: "IX_Percentage_StudentID",
                 table: "Percentage",
                 column: "StudentID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Score_ClassId",
+                table: "Score",
+                column: "ClassId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Score_CourseID",
@@ -345,7 +385,7 @@ namespace SchoolSolution.Infrastructure.Migrations
                 name: "ClassAssignement");
 
             migrationBuilder.DropTable(
-                name: "Classe");
+                name: "ClassesCourses");
 
             migrationBuilder.DropTable(
                 name: "CourseAssignement");
@@ -367,6 +407,9 @@ namespace SchoolSolution.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "PaimentType");
+
+            migrationBuilder.DropTable(
+                name: "Classe");
 
             migrationBuilder.DropTable(
                 name: "Course");

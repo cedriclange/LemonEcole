@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿@model SchoolSolution.Web.ViewModels.AllScoreViewModel
 @{
     ViewBag.Title = "Côtes";
@@ -96,4 +97,107 @@
 
         });
     });
+=======
+﻿@model SchoolSolution.Web.ViewModels.AllScoreViewModel
+@{
+    ViewBag.Title = "Côtes";
+}
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<div class="top-buffer"></div>
+<div class="panel panel-primary">
+    <div class="panel-heading">Filtrage côtes</div>
+    <div class="panel-body">
+        <div class="panel panel-warning">
+            <div class="panel-heading">Filtre</div>
+            <div class="panel-body">
+                <form asp-action="FilterAll" method="get">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label asp-for="ClassId" class="col-md-3 control-label">Classe</label>
+                            <div class="col-md-3">
+                                <select asp-for="ClassId" id="classID" asp-items="ViewBag.ClassId" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CourseId" class="col-md-3 control-label">Cours</label>
+                            <div class="col-md-3">
+                                <select asp-for="CourseId" id="courseID" asp-items="ViewBag.CourseId" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="submit" value="Filtrer" class="btn btn-success" />
+                        </div>
+                    </div>
+                    <br />
+
+                    
+                </form>
+            </div>
+        </div><!--End of filter div-->
+        <hr />
+        <div class="panel panel-info">
+            <div class="panel-heading">Resultat</div>
+            <div class="panel-body">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+
+                            <th></th>
+                            <th>1er P</th>
+                            <th>2eme P</th>
+                            <th>Exam I</th>
+                            <th>3eme P</th>
+                            <th>4eme P</th>
+                            <th>Exam II</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.SM != null)
+                        {
+                            @foreach (var item in Model.SM)
+                            {
+                                <tr>
+                                    <td>@item.StudentName</td>
+                                    @foreach (var value in item.MatrixData)
+                                    {
+                                        <td>@value.Score</td>
+                                    }
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "/api/CourseAPI/GetCourseList",
+            data: { id: $("#classID").val() },
+            contentType: "aaplicationjson; charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                $("#DIV").html('');
+                var DIV = '';
+                $.each(result, function (i, item) {
+
+                    var rows = "<option value'" + item.value + "'>" + item.text + "</option>";
+                    $("#courseID").append(rows);
+                });
+                console.log(result);
+
+            },
+            failure: function (result) {
+                alert(result.responsetext);
+
+            }
+
+        });
+
+    });
+>>>>>>> Stashed changes
 </script>

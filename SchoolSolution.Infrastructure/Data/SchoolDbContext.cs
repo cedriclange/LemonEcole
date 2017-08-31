@@ -6,6 +6,10 @@ namespace SchoolSolution.Infrastructure.Data
 {
     public class SchoolDbContext : DbContext
     {
+        public SchoolDbContext()
+        {
+
+        }
        
         public SchoolDbContext(DbContextOptions<SchoolDbContext> options) : base(options)
         {
@@ -28,17 +32,24 @@ namespace SchoolSolution.Infrastructure.Data
         public virtual DbSet<ClassesCourses> ClassesCourses { get; set; }
 
 
+<<<<<<< Updated upstream
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+
+        //    optionsBuilder.UseSqlServer(@"Data Source=(localdb)\ProjectsV13;Initial Catalog=SchoolContext.db;Integrated Security=True");
+        //}
+=======
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
-            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\ProjectsV13;Initial Catalog=SchoolContext.db;Integrated Security=True");
+            //optionsBuilder.UseSqlite("Filename = ./bin/school.db");
+            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\ProjectsV13;Initial Catalog=Context.db;Integrated Security=True");
         }
+>>>>>>> Stashed changes
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Classe>(entity =>
             {
-                entity.HasIndex(e => e.DepartmentID)
-                    .HasName("IX_DepartmentID");
+               
                 entity.Property(e => e.DepartmentID).HasColumnName("DepartmentID");
 
                 entity.Property(e => e.Name)
@@ -64,8 +75,7 @@ namespace SchoolSolution.Infrastructure.Data
 
             modelBuilder.Entity<Course>(entity =>
             {
-                entity.HasIndex(e => e.DepartmentID)
-                    .HasName("IX_DepartmentID");
+               
 
                 entity.Property(e => e.DepartmentID).HasColumnName("DepartmentID");
 
@@ -141,8 +151,7 @@ namespace SchoolSolution.Infrastructure.Data
                 entity.Property(e => e.StudentNumber)
                .HasColumnType("varchar(100)");
                 entity.Property(e => e.DateofBirth).HasColumnType("date");
-                entity.HasIndex(e => e.StudentNumber)
-                .HasName("IX_StudentNum");
+               
 
                 entity.HasMany(e => e.Paiements)
                .WithOne(e => e.Student)
