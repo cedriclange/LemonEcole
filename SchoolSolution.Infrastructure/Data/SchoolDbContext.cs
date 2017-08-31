@@ -32,33 +32,11 @@ namespace SchoolSolution.Infrastructure.Data
         public virtual DbSet<ClassesCourses> ClassesCourses { get; set; }
 
 
-<<<<<<< Updated upstream
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-
-        //    optionsBuilder.UseSqlServer(@"Data Source=(localdb)\ProjectsV13;Initial Catalog=SchoolContext.db;Integrated Security=True");
-        //}
-=======
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-<<<<<<< Updated upstream
-            //optionsBuilder.UseSqlite("Filename = ./bin/school.db");
-            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\ProjectsV13;Initial Catalog=Context.db;Integrated Security=True");
-=======
-            optionsBuilder.UseSqlite("Filename =./bin/schoolContext.db");
-            //optionsBuilder.UseSqlServer(@"Data Source=(localdb)\ProjectsV13;Initial Catalog=SchoolContext.db;Integrated Security=True");
->>>>>>> Stashed changes
-        }
->>>>>>> Stashed changes
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Classe>(entity =>
             {
-<<<<<<< Updated upstream
-               
-=======
-                
->>>>>>> Stashed changes
+
                 entity.Property(e => e.DepartmentID).HasColumnName("DepartmentID");
 
                 entity.Property(e => e.Name)
@@ -160,12 +138,7 @@ namespace SchoolSolution.Infrastructure.Data
                 entity.Property(e => e.StudentNumber)
                .HasColumnType("varchar(100)");
                 entity.Property(e => e.DateofBirth).HasColumnType("date");
-<<<<<<< Updated upstream
-               
 
-=======
-                
->>>>>>> Stashed changes
                 entity.HasMany(e => e.Paiements)
                .WithOne(e => e.Student)
                .HasForeignKey(e => e.StudentID);
