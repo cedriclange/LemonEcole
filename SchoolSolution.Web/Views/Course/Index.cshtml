@@ -18,13 +18,14 @@
 
         </div>
         <div class="top-buffer"></div>
-        <div class="col-md-9">
+        <div class="col-md-12">
             <table class="table table-bordered table-striped table-condensed table-responsive">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Désciption</th>
-
+                        <th>Moyenne périodique</th>
+                        <th>Moyenne Examen</th>
                         <th>Moyenne total</th>
                         <th>Section</th>
                         <th>Action</th>
@@ -40,7 +41,8 @@
 
                             <td>@position.ToString()</td>
                             <td>@Model[i].Name</td>
-                           
+                            <td>@Model[i].PeriodAverage</td>
+                            <td>@Model[i].ExamAverage</td>
                             <td>@Model[i].TotalAverage</td>
                             <td>@Model[i].department.Name</td>
                             <td>

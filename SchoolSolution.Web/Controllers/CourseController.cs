@@ -39,7 +39,7 @@ namespace SchoolSolution.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,TotalAverage,DepartmentID")] Course course)
+        public async Task<IActionResult> Create([Bind("Id,Name,PeriodAverage,ExamAverage,TotalAverage,DepartmentID")] Course course)
         {
             if (ModelState.IsValid)
             {
@@ -69,7 +69,7 @@ namespace SchoolSolution.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,TotalAverage,DepartmentID")] Course course)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,PeriodAverage,ExamAverage,TotalAverage,DepartmentID")] Course course)
         {
             if (id != course.Id)
             {
@@ -82,6 +82,7 @@ namespace SchoolSolution.Web.Controllers
                 {
                     cr.Update(course);
                     await cr.SaveChangesAsync();
+                    return RedirectToAction("Index");
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -94,7 +95,6 @@ namespace SchoolSolution.Web.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("Index");
             }
             ViewData["DepartmentID"] = new SelectList(dep.DropDownList(), "Id", "Name", course.DepartmentID);
             return View(course);

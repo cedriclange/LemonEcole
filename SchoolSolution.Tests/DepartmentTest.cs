@@ -39,7 +39,9 @@ namespace SchoolSolution.Tests
             await dep.SaveChangesAsync();
             int x = await dep.CountDepartmentAsync();
             Assert.Equal(1,x);
+            
         }
+        
         
     }
 }
