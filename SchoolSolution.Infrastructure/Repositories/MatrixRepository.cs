@@ -57,6 +57,7 @@ namespace SchoolSolution.Infrastructure.Repositories
             }
             return null;
         }
+        
 
         //get all score for each course
         // and 
