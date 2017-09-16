@@ -31,7 +31,7 @@ namespace SchoolSolution.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ClassAssignement");
+                    b.ToTable("tbl_classassignement");
                 });
 
             modelBuilder.Entity("SchoolSolution.Infrastructure.Entities.Classe", b =>
@@ -50,7 +50,7 @@ namespace SchoolSolution.Infrastructure.Migrations
 
                     b.HasIndex("DepartmentID");
 
-                    b.ToTable("Classe");
+                    b.ToTable("tbl_classe");
                 });
 
             modelBuilder.Entity("SchoolSolution.Infrastructure.Entities.ClassesCourses", b =>
@@ -63,7 +63,7 @@ namespace SchoolSolution.Infrastructure.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("ClassesCourses");
+                    b.ToTable("tbl_classecourses");
                 });
 
             modelBuilder.Entity("SchoolSolution.Infrastructure.Entities.Course", b =>
@@ -88,7 +88,7 @@ namespace SchoolSolution.Infrastructure.Migrations
 
                     b.HasIndex("DepartmentID");
 
-                    b.ToTable("Course");
+                    b.ToTable("tbl_course");
                 });
 
             modelBuilder.Entity("SchoolSolution.Infrastructure.Entities.CourseAssignement", b =>
@@ -101,7 +101,7 @@ namespace SchoolSolution.Infrastructure.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("CourseAssignement");
+                    b.ToTable("tbl_courseassignement");
                 });
 
             modelBuilder.Entity("SchoolSolution.Infrastructure.Entities.Department", b =>
@@ -121,7 +121,7 @@ namespace SchoolSolution.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Department");
+                    b.ToTable("tbl_departement");
                 });
 
             modelBuilder.Entity("SchoolSolution.Infrastructure.Entities.Enrollement", b =>
@@ -137,7 +137,7 @@ namespace SchoolSolution.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Enrollement");
+                    b.ToTable("tbl_enrollement");
                 });
 
             modelBuilder.Entity("SchoolSolution.Infrastructure.Entities.PaiementFor", b =>
@@ -150,7 +150,7 @@ namespace SchoolSolution.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PaiementFor");
+                    b.ToTable("tbl_paymentreason");
                 });
 
             modelBuilder.Entity("SchoolSolution.Infrastructure.Entities.PaiementType", b =>
@@ -163,7 +163,7 @@ namespace SchoolSolution.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PaimentType");
+                    b.ToTable("tbl_paymentype");
                 });
 
             modelBuilder.Entity("SchoolSolution.Infrastructure.Entities.Paiment", b =>
@@ -189,7 +189,7 @@ namespace SchoolSolution.Infrastructure.Migrations
 
                     b.HasIndex("Type");
 
-                    b.ToTable("Paiment");
+                    b.ToTable("tbl_payement");
                 });
 
             modelBuilder.Entity("SchoolSolution.Infrastructure.Entities.People", b =>
@@ -223,7 +223,7 @@ namespace SchoolSolution.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("People");
+                    b.ToTable("tbl_people");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("People");
                 });
@@ -245,7 +245,7 @@ namespace SchoolSolution.Infrastructure.Migrations
 
                     b.HasIndex("StudentID");
 
-                    b.ToTable("Percentage");
+                    b.ToTable("tbl_percentage");
                 });
 
             modelBuilder.Entity("SchoolSolution.Infrastructure.Entities.Period", b =>
@@ -258,7 +258,7 @@ namespace SchoolSolution.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Period");
+                    b.ToTable("tbl_yearperiod");
                 });
 
             modelBuilder.Entity("SchoolSolution.Infrastructure.Entities.Score", b =>
@@ -290,7 +290,7 @@ namespace SchoolSolution.Infrastructure.Migrations
 
                     b.HasIndex("StudentID");
 
-                    b.ToTable("Score");
+                    b.ToTable("tbl_score");
                 });
 
             modelBuilder.Entity("SchoolSolution.Infrastructure.Entities.Student", b =>

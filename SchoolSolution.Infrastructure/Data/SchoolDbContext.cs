@@ -34,6 +34,7 @@ namespace SchoolSolution.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
             modelBuilder.Entity<Classe>(entity =>
             {
                 entity.ToTable("tbl_classe");
@@ -120,7 +121,7 @@ namespace SchoolSolution.Infrastructure.Data
             });
             modelBuilder.Entity<People>(entity =>
            {
-               entity.ToTable("btl_people");
+               entity.ToTable("tbl_people");
                entity.Property(e => e.Firstname)
                .IsRequired()
                .HasColumnType("varchar(100)");
@@ -207,6 +208,11 @@ namespace SchoolSolution.Infrastructure.Data
 
 
             });
+            modelBuilder.Entity<Score>().ToTable("tbl_score");
+            modelBuilder.Entity<Percentage>().ToTable("tbl_percentage");
+            modelBuilder.Entity<Paiment>().ToTable("tbl_payement");
+            modelBuilder.Entity<Enrollement>().ToTable("tbl_enrollement");
+            modelBuilder.Entity<ClassAssignement>().ToTable("tbl_classassignement");
         }
     }
 }

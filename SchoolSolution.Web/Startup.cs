@@ -28,7 +28,7 @@ namespace SchoolSolution.Web
         {
             services.AddMvc();
             services.AddDbContext<SchoolDbContext>(option =>
-            option.UseSqlite("Filename = ./bin/schoolContext.db"));
+            option.UseSqlite("Filename = ./bin/Context.db"));
             //services.AddDbContext<SchoolDbContext>(options=>
                 //options.UseSqlServer(Configuration.GetConnectionString("SchoolSolution")));
             //Add All my services
