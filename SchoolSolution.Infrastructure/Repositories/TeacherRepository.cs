@@ -6,12 +6,17 @@ using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using SchoolSolution.Infrastructure.Interfaces;
 
 namespace SchoolSolution.Infrastructure.Repositories
 {
-    public class TeacherRepository : IRepository
+    public class TeacherRepository : ITeacher
     {
-        private SchoolDbContext context = new SchoolDbContext();
+        SchoolDbContext context;
+        public TeacherRepository(SchoolDbContext ctx)
+        {
+            context = ctx;
+        }
 
         public async Task SaveChangesAsync()
         {

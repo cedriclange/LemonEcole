@@ -1,0 +1,30 @@
+﻿@model SchoolSolution.Infrastructure.Entities.Classe
+
+@using SchoolSolution.Web.Models
+
+<div class="top-buffer"></div>
+<form asp-action="Edit" role="form">
+    @await Html.PartialAsync("_ModalHeader", new ModalHeader { Heading = "Modifier Classe" })
+    <div class="modal-body form-horizontal">
+        <div class="row">
+            <div class="container">
+                <div class="form-group">
+                    <label asp-for="Name" class="col-md-2 control-label">Description</label>
+                    <div class="col-md-3">
+                        <input asp-for="Name" class="form-control" placeholder="exemple: (1) PREMIERE A"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DepartmentID" class="col-md-2 control-label">Section</label>
+                    <div class="col-md-3">
+                        <select asp-for="DepartmentID" class="form-control" asp-items="ViewBag.DepartmentID"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @await Html.PartialAsync("_ModalFooter", new ModalFooter { })
+</form>
+
+
+

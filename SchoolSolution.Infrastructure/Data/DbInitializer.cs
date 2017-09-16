@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using SchoolSolution.Infrastructure.Entities;
-
-
+using Microsoft.EntityFrameworkCore;
 
 namespace SchoolSolution.Infrastructure.Data
 {
@@ -11,6 +10,7 @@ namespace SchoolSolution.Infrastructure.Data
         {
             //ctx.Database.EnsureDeleted();
             //ctx.Database.EnsureCreated();
+            ctx.Database.Migrate();
             if (ctx.PaimentType.Any())
             {
                 return;
@@ -19,7 +19,7 @@ namespace SchoolSolution.Infrastructure.Data
             {
                 new PaiementType{Description = "N/A" },
                 new PaiementType{Description = "Minerval" },
-                new PaiementType{Description = "Frais Scholaire"},
+                new PaiementType{Description = "Frais Scolaire"},
                 new PaiementType{Description = "Autres frais" }
             };
             ctx.AddRange(types);
@@ -34,7 +34,7 @@ namespace SchoolSolution.Infrastructure.Data
                 new PaiementFor{Month = "Mai"},
                 new PaiementFor{Month = "Juin"},
                 new PaiementFor{Month = "Juillet"},
-                new PaiementFor{Month = "Aout"},
+                new PaiementFor{Month = "Août"},
                 new PaiementFor{Month = "Septembre"},
                 new PaiementFor{Month = "Octobre"},
                 new PaiementFor{Month = "Novembre"},
@@ -45,14 +45,14 @@ namespace SchoolSolution.Infrastructure.Data
             ctx.SaveChanges();
             var period = new Period[]
             {
-                new Period{Name="Première"},
-                new Period{Name="Deuxième"},
-                new Period{Name="Troisième"},
-                new Period{Name="Quatrieme"},
-                new Period{Name="Examen premier semestre"},
-                new Period{Name="Total premier semestre"},
-                new Period{Name="Examen deuxième semestre"},
-                new Period{Name="Total deuxième semestre"},
+                new Period{Name="1er P"},
+                new Period{Name="2eme P"},
+                new Period{Name="Exam Semèstre I"},
+                new Period{Name="Total Semèstre I"},
+                new Period{Name="3eme P"},
+                new Period{Name="4eme P"},
+                new Period{Name="Exam semèstre II"},
+                new Period{Name="Total semèstre II"},
             };
             ctx.AddRange(period);
             ctx.SaveChanges();

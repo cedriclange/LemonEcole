@@ -8,6 +8,8 @@ namespace SchoolSolution.Infrastructure.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public double PeriodAverage { get; set; }
+        public double ExamAverage { get; set; }  
         public double TotalAverage { get; set; }
         public int DepartmentID { get; set; }
 

@@ -4,12 +4,17 @@ using SchoolSolution.Infrastructure.Data;
 using SchoolSolution.Infrastructure.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using SchoolSolution.Infrastructure.Interfaces;
 
 namespace SchoolSolution.Infrastructure.Repositories
 {
-    public class StudentRepository : IRepository
+    public class StudentRepository : IStudent
     {
-        private SchoolDbContext context = new SchoolDbContext();
+        SchoolDbContext context;
+        public StudentRepository(SchoolDbContext ctx)
+        {
+            context = ctx;
+        }
 
         public async Task SaveChangesAsync()
         {
@@ -17,12 +22,12 @@ namespace SchoolSolution.Infrastructure.Repositories
         }
        
 
-        public async Task<int> CountStudent()
+        public async Task<int> CountStudentAsync()
         {
             return await context.People
                 .OfType<Student>().CountAsync();
         }
-        public async Task<IEnumerable<Student>> GetAll()
+        public async Task<IEnumerable<Student>> GetAllAsync()
         {
             return await context.People
                 .OfType<Student>()

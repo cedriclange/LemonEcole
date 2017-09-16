@@ -1,0 +1,106 @@
+﻿@model SchoolSolution.Web.ViewModels.ListePaieViewModel
+@using SchoolSolution.Web.Models
+@using SchoolSolution.Web.Code
+@{
+    ViewData["Title"] = "Payement";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading panel-head">Liste de controle</div>
+    <div class="panel-body">
+        <div class="panel panel-warning">
+            <div class="panel-heading panel-head"><span class="glyphicon glyphicon-search"></span>Filtrage recherche</div>
+            <div class="panel-body">
+                <form asp-action="Index" method="get">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label asp-for="classId" class="col-md-2 control-label">Classe</label>
+                            <div class="col-md-3">
+                                <select asp-for="classId" class="form-control" asp-items="ViewBag.ClassID"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="typeId" class="col-md-2 control-label">Type de frais</label>
+                            <div class="col-md-3">
+                                <select asp-for="typeId" class="form-control" asp-items="ViewBag.Type"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="monthId" class="col-md-2 control-label">Mois</label>
+                            <div class="col-md-3">
+                                <select asp-for="monthId" class="form-control" asp-items="ViewBag.MonthId"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="status" class="col-md-2 control-label">Status</label>
+                            <div class="col-md-2">
+                                <select asp-for="status" class="form-control">
+                                    <option value="Paid">En ordre</option>
+                                    <option value="Unpaid">Pas en ordre</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-3">
+                                <input type="submit" value="Filtrer" class="btn btn-success" />
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+
+
+            </div>
+
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading panel-head">Résultat recherche</div>
+            <div class="panel-body">
+                @if (ViewBag.message == "Filter")
+                {
+                    <text>Veuillez filtrer votre recherche</text>
+
+                }
+                @if (ViewBag.message == "None")
+                {
+                    <text>Aucun résultat pour votre recherche</text>
+
+                }
+                @if (ViewBag.message == "Found")
+                {
+                    <p>Le résultats a trouvé @Model.count élèves</p>
+                    <hr />
+
+                    <div class="col-md-7">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nom Complet</th>
+                                    <th>Genre</th>
+                                    <th>Numero élève</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for(int i = 0; i < Model.students.Count(); i++)
+                                {
+                                    int position = i +1 ; 
+                                    <tr>
+                                        <td>@position.ToString()</td>
+                                        <td>@Model.students[i].FullName</td>
+                                        <td>@Model.students[i].Gender</td>
+                                        <td>@Model.students[i].StudentNumber</td>
+                                    </tr>
+
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

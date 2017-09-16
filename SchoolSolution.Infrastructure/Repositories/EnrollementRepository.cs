@@ -6,12 +6,17 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using SchoolSolution.Infrastructure.Entities;
 using SchoolSolution.Infrastructure.Data;
+using SchoolSolution.Infrastructure.Interfaces;
 
 namespace SchoolSolution.Infrastructure.Repositories
 {
-    public class EnrollementRepository : IRepository
+    public class EnrollementRepository : IEnrollement
     {
-        private SchoolDbContext context = new SchoolDbContext();
+        SchoolDbContext context;
+        public EnrollementRepository(SchoolDbContext ctx)
+        {
+            context = ctx;
+        }
 
         public async  Task SaveChangesAsync()
         {

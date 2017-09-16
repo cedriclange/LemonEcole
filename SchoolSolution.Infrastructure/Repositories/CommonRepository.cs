@@ -9,7 +9,7 @@ namespace SchoolSolution.Infrastructure.Repositories
 {
     public class CommonRepository
     {
-        SchoolDbContext context = new SchoolDbContext();
+        
         public bool IfExists<T>(string name) where T : class
         {
             return true;

@@ -4,12 +4,17 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
+using SchoolSolution.Infrastructure.Interfaces;
 
 namespace SchoolSolution.Infrastructure.Repositories
 {
-    public class PeriodRepository
+    public class PeriodRepository : IPeriod
     {
-        private SchoolDbContext context = new SchoolDbContext();
+        SchoolDbContext context;
+        public PeriodRepository(SchoolDbContext ctx)
+        {
+            context = ctx;
+        }
 
         public IEnumerable<Period> DropDownList()
         {

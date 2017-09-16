@@ -1,0 +1,76 @@
+﻿@model SchoolSolution.Web.ViewModels.ClassDetailsModel
+@using SchoolSolution.Web.Models
+@using SchoolSolution.Web.Code
+
+<div class="top-buffer"></div>
+<div class="panel panel-primary">
+    <div class="panel-heading panel-head">Détails - @Model.Classe.Name  - Nombre élèves: @Model.NumberofStudent</div>
+    <div class="panel-body">
+        
+        <div class="top-buffer"></div>
+        <div class="col-md-7">
+            <table class="table table-bordered table-striped table-condensed table-responsive">
+                <thead>
+                <th>#</th>
+                <th>Nom complet</th>
+                <th>Genre</th>
+                <th>No Carte</th>
+                <th>Action</th>
+
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Students.Count(); i++)
+                    {
+                        int position = i + 1;
+                        <tr>
+
+                            <td>@position.ToString()</td>
+                            <td>@Model.Students[i].FullName</td>
+                            <td>@Model.Students[i].Gender</td>
+                            <td>@Model.Students[i].StudentNumber</td>
+                            <td>
+                                
+                                <a asp-action="Details" asp-controller="Student" asp-route-id="@Model.Students[i].Id"
+                                   class="btn btn-info">
+                                    <span class="glyphicon glyphicon-info-sign" /> Infos
+                                </a>
+                            </td>
+
+                        </tr>
+                    }
+
+
+
+                </tbody>
+
+            </table>
+        </div>
+        <div class="col-md-4">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nom du cours</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Courses.Count(); i++)
+                    {
+                        int position = i + 1;
+                        <tr>
+                            <td>@position.ToString()</td>
+                            <td>@Model.Courses[i].Name</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+@Html.Partial("_Modal", new BootstrapModel { ID="modal-action-classe",AreaLabeledId="modal-action-classe-label", Size = ModalSize.Medium})
+@section scripts{
+    <scipt src="~/js/classe-index.js" asp-append-version="true"></scipt>
+}
+
+

@@ -1,0 +1,60 @@
+﻿@model SchoolSolution.Web.ViewModels.PayHistoricModel
+@using SchoolSolution.Web.Models
+@using SchoolSolution.Web.Code
+
+@{
+    ViewBag.Title = "Payment";
+}
+
+<div class="top-buffer"></div>
+<div class="panel panel-primary">
+    <div class="panel-heading panel-head">Historique payment Elève : @Model.Student</div>
+    <div class="panel-body">
+        <div class="btn-group">
+            <a id="createTeacherModal" data-toggle="modal" asp-action="Create" asp-route-id="@Model.StudentID" data-target="#modal-action-student" class="btn btn-primary">
+                 <span class="glyphicon glyphicon-plus"></span>  Effectuer Payment
+            </a>
+
+        </div>
+        <div class="top-buffer"></div>
+        <table class="table table-bordered table-striped table-condensed table-responsive">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Date de paiement</th>
+                    <th>Type de paiement</th>
+                    <th>Période de paiement</th>
+                    <th>Montant</th>
+                </tr>
+                <
+            
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Paiements.Count(); i++)
+                {
+                    int position = i + 1;
+                    <tr>
+                        
+                        <td>@position.ToString()</td>
+                        <td>@Model.Paiements[i].PaidOn.ToString("dd/MM/yyyy")</td>
+                        <td>@Model.Paiements[i].PType.Description</td>
+                        <td>@Model.Paiements[i].Month.Month</td>
+                        <td>@Model.Paiements[i].Amount</td>
+                        
+
+                    </tr>
+                } 
+
+                   
+               
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
+@Html.Partial("_Modal", new BootstrapModel { ID="modal-action-student",AreaLabeledId="modal-action-student-label", Size =ModalSize.Medium})
+@section scripts{
+    <scipt src="~/js/student-index.js" asp-append-version="true"></scipt>
+}
+
