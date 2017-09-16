@@ -9,6 +9,7 @@ namespace SchoolSolution.Infrastructure.Data
         public static void Initialize(SchoolDbContext ctx)
         {
             //ctx.Database.EnsureDeleted();
+            //ctx.Database.EnsureCreated();
             ctx.Database.Migrate();
             if (ctx.PaimentType.Any())
             {
