@@ -34,9 +34,10 @@ namespace SchoolSolution.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
             modelBuilder.Entity<Classe>(entity =>
             {
-
+                entity.ToTable("tbl_classe");
                 entity.Property(e => e.DepartmentID).HasColumnName("DepartmentID");
 
                 entity.Property(e => e.Name)
@@ -63,7 +64,7 @@ namespace SchoolSolution.Infrastructure.Data
             modelBuilder.Entity<Course>(entity =>
             {
                
-
+                entity.ToTable("tbl_course");
                 entity.Property(e => e.DepartmentID).HasColumnName("DepartmentID");
 
                 entity.Property(e => e.Name)
@@ -87,6 +88,7 @@ namespace SchoolSolution.Infrastructure.Data
 
             modelBuilder.Entity<CourseAssignement>(entity =>
             {
+                entity.ToTable("tbl_courseassignement");
                 entity.HasKey(e => new { e.TeacherId, e.CourseId });
                 entity.HasOne(e => e.Course).WithMany(e => e.CourseAssigned)
                 .HasForeignKey(e => e.CourseId);
@@ -96,6 +98,7 @@ namespace SchoolSolution.Infrastructure.Data
             });
             modelBuilder.Entity<ClassesCourses>(entity =>
            {
+               entity.ToTable("tbl_classecourses");
                entity.HasKey(e => new { e.ClassId, e.CourseId });
                entity.HasOne(e => e.Course).WithMany(e => e.CoursesInClass)
                .HasForeignKey(e => e.CourseId);
@@ -108,6 +111,7 @@ namespace SchoolSolution.Infrastructure.Data
 
             modelBuilder.Entity<Department>(entity =>
             {
+                entity.ToTable("tbl_departement");
                 entity.Property(e => e.CreatedDate).HasColumnType("date");
                 entity.Property(e => e.ModifiedDate).HasColumnType("date");
 
@@ -117,6 +121,7 @@ namespace SchoolSolution.Infrastructure.Data
             });
             modelBuilder.Entity<People>(entity =>
            {
+               entity.ToTable("tbl_people");
                entity.Property(e => e.Firstname)
                .IsRequired()
                .HasColumnType("varchar(100)");
@@ -163,6 +168,7 @@ namespace SchoolSolution.Infrastructure.Data
 
             modelBuilder.Entity<PaiementType>(entity =>
             {
+                entity.ToTable("tbl_paymentype");
                 entity.HasMany(e => e.Paiements)
                 .WithOne(e => e.PType)
                 .HasForeignKey(e => e.Type);
@@ -174,6 +180,7 @@ namespace SchoolSolution.Infrastructure.Data
             });
             modelBuilder.Entity<PaiementFor>(entity =>
             {
+                entity.ToTable("tbl_paymentreason");
                 entity.HasMany(e => e.Paiements)
                 .WithOne(e => e.Month)
                 .HasForeignKey(e => e.MonthId);
@@ -185,6 +192,7 @@ namespace SchoolSolution.Infrastructure.Data
             });
             modelBuilder.Entity<Period>(entity =>
             {
+                entity.ToTable("tbl_yearperiod");
                 entity.HasMany(e => e.Scores)
                 .WithOne(e => e.Period)
                 .HasForeignKey(e => e.PeriodID);
@@ -200,6 +208,11 @@ namespace SchoolSolution.Infrastructure.Data
 
 
             });
+            modelBuilder.Entity<Score>().ToTable("tbl_score");
+            modelBuilder.Entity<Percentage>().ToTable("tbl_percentage");
+            modelBuilder.Entity<Paiment>().ToTable("tbl_payement");
+            modelBuilder.Entity<Enrollement>().ToTable("tbl_enrollement");
+            modelBuilder.Entity<ClassAssignement>().ToTable("tbl_classassignement");
         }
     }
 }

@@ -9,7 +9,7 @@ namespace SchoolSolution.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "ClassAssignement",
+                name: "tbl_classassignement",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -19,11 +19,11 @@ namespace SchoolSolution.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ClassAssignement", x => x.Id);
+                    table.PrimaryKey("PK_tbl_classassignement", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Department",
+                name: "tbl_departement",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -34,11 +34,11 @@ namespace SchoolSolution.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Department", x => x.Id);
+                    table.PrimaryKey("PK_tbl_departement", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Enrollement",
+                name: "tbl_enrollement",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -49,11 +49,11 @@ namespace SchoolSolution.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Enrollement", x => x.Id);
+                    table.PrimaryKey("PK_tbl_enrollement", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "PaiementFor",
+                name: "tbl_paymentreason",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -62,11 +62,11 @@ namespace SchoolSolution.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PaiementFor", x => x.Id);
+                    table.PrimaryKey("PK_tbl_paymentreason", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "PaimentType",
+                name: "tbl_paymentype",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -75,11 +75,11 @@ namespace SchoolSolution.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PaimentType", x => x.Id);
+                    table.PrimaryKey("PK_tbl_paymentype", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "People",
+                name: "tbl_people",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -102,11 +102,11 @@ namespace SchoolSolution.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_People", x => x.Id);
+                    table.PrimaryKey("PK_tbl_people", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Period",
+                name: "tbl_yearperiod",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -115,11 +115,11 @@ namespace SchoolSolution.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Period", x => x.Id);
+                    table.PrimaryKey("PK_tbl_yearperiod", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Classe",
+                name: "tbl_classe",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -129,38 +129,40 @@ namespace SchoolSolution.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Classe", x => x.Id);
+                    table.PrimaryKey("PK_tbl_classe", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Classe_Department_DepartmentID",
                         column: x => x.DepartmentID,
-                        principalTable: "Department",
+                        principalTable: "tbl_departement",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Course",
+                name: "tbl_course",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     DepartmentID = table.Column<int>(type: "INTEGER", nullable: false),
+                    ExamAverage = table.Column<double>(type: "REAL", nullable: false),
                     Name = table.Column<string>(type: "varchar(50)", nullable: false),
+                    PeriodAverage = table.Column<double>(type: "REAL", nullable: false),
                     TotalAverage = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Course", x => x.Id);
+                    table.PrimaryKey("PK_tbl_course", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Course_Department_DepartmentID",
                         column: x => x.DepartmentID,
-                        principalTable: "Department",
+                        principalTable: "tbl_departement",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Paiment",
+                name: "tbl_payement",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -173,29 +175,29 @@ namespace SchoolSolution.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Paiment", x => x.Id);
+                    table.PrimaryKey("PK_tbl_payement", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Paiment_PaiementFor_MonthId",
+                        name: "FK_tbl_payement_tbl_paymentreason_MonthId",
                         column: x => x.MonthId,
-                        principalTable: "PaiementFor",
+                        principalTable: "tbl_paymentreason",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Paiment_People_StudentID",
+                        name: "FK_tbl_payement_tbl_people_StudentID",
                         column: x => x.StudentID,
-                        principalTable: "People",
+                        principalTable: "tbl_people",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Paiment_PaimentType_Type",
+                        name: "FK_tbl_payement_tbl_paymentype_Type",
                         column: x => x.Type,
-                        principalTable: "PaimentType",
+                        principalTable: "tbl_paymentype",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Percentage",
+                name: "tbl_percentage",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -206,23 +208,23 @@ namespace SchoolSolution.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Percentage", x => x.Id);
+                    table.PrimaryKey("PK_tbl_percentage", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Percentage_Period_PeriodID",
+                        name: "FK_tbl_percentage_tbl_yearperiod_PeriodID",
                         column: x => x.PeriodID,
-                        principalTable: "Period",
+                        principalTable: "tbl_yearperiod",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Percentage_People_StudentID",
+                        name: "FK_tbl_percentage_tbl_people_StudentID",
                         column: x => x.StudentID,
-                        principalTable: "People",
+                        principalTable: "tbl_people",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ClassesCourses",
+                name: "tbl_classecourses",
                 columns: table => new
                 {
                     ClassId = table.Column<int>(type: "INTEGER", nullable: false),
@@ -230,23 +232,23 @@ namespace SchoolSolution.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ClassesCourses", x => new { x.ClassId, x.CourseId });
+                    table.PrimaryKey("PK_tbl_classecourses", x => new { x.ClassId, x.CourseId });
                     table.ForeignKey(
-                        name: "FK_ClassesCourses_Classe_ClassId",
+                        name: "FK_tbl_classecourses_tbl_classe_ClassId",
                         column: x => x.ClassId,
-                        principalTable: "Classe",
+                        principalTable: "tbl_classe",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClassesCourses_Course_CourseId",
+                        name: "FK_tbl_classecourses_tbl_course_CourseId",
                         column: x => x.CourseId,
-                        principalTable: "Course",
+                        principalTable: "tbl_course",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "CourseAssignement",
+                name: "tbl_courseassignement",
                 columns: table => new
                 {
                     TeacherId = table.Column<int>(type: "INTEGER", nullable: false),
@@ -254,23 +256,23 @@ namespace SchoolSolution.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CourseAssignement", x => new { x.TeacherId, x.CourseId });
+                    table.PrimaryKey("PK_tbl_courseassignement", x => new { x.TeacherId, x.CourseId });
                     table.ForeignKey(
-                        name: "FK_CourseAssignement_Course_CourseId",
+                        name: "FK_tbl_courseassignement_tbl_course_CourseId",
                         column: x => x.CourseId,
-                        principalTable: "Course",
+                        principalTable: "tbl_course",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CourseAssignement_People_TeacherId",
+                        name: "FK_tbl_courseassignement_tbl_people_TeacherId",
                         column: x => x.TeacherId,
-                        principalTable: "People",
+                        principalTable: "tbl_people",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Score",
+                name: "tbl_score",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -285,142 +287,142 @@ namespace SchoolSolution.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Score", x => x.Id);
+                    table.PrimaryKey("PK_tbl_score", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Score_Classe_ClassId",
+                        name: "FK_tbl_score_tbl_classe_ClassId",
                         column: x => x.ClassId,
-                        principalTable: "Classe",
+                        principalTable: "tbl_classe",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Score_Course_CourseID",
+                        name: "FK_tbl_score_tbl_course_CourseID",
                         column: x => x.CourseID,
-                        principalTable: "Course",
+                        principalTable: "tbl_course",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Score_Period_PeriodID",
+                        name: "FK_tbl_score_tbl_yearperiod_PeriodID",
                         column: x => x.PeriodID,
-                        principalTable: "Period",
+                        principalTable: "tbl_yearperiod",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Score_People_StudentID",
+                        name: "FK_tbl_score_tbl_people_StudentID",
                         column: x => x.StudentID,
-                        principalTable: "People",
+                        principalTable: "tbl_people",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Classe_DepartmentID",
-                table: "Classe",
+                name: "IX_tbl_classe_DepartmentID",
+                table: "tbl_classe",
                 column: "DepartmentID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClassesCourses_CourseId",
-                table: "ClassesCourses",
+                name: "IX_tbl_classecourses_CourseId",
+                table: "tbl_classecourses",
                 column: "CourseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Course_DepartmentID",
-                table: "Course",
+                name: "IX_tbl_course_DepartmentID",
+                table: "tbl_course",
                 column: "DepartmentID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CourseAssignement_CourseId",
-                table: "CourseAssignement",
+                name: "IX_tbl_courseassignement_CourseId",
+                table: "tbl_courseassignement",
                 column: "CourseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Paiment_MonthId",
-                table: "Paiment",
+                name: "IX_tbl_payement_MonthId",
+                table: "tbl_payement",
                 column: "MonthId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Paiment_StudentID",
-                table: "Paiment",
+                name: "IX_tbl_payement_StudentID",
+                table: "tbl_payement",
                 column: "StudentID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Paiment_Type",
-                table: "Paiment",
+                name: "IX_tbl_payement_Type",
+                table: "tbl_payement",
                 column: "Type");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Percentage_PeriodID",
-                table: "Percentage",
+                name: "IX_tbl_percentage_PeriodID",
+                table: "tbl_percentage",
                 column: "PeriodID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Percentage_StudentID",
-                table: "Percentage",
+                name: "IX_tbl_percentage_StudentID",
+                table: "tbl_percentage",
                 column: "StudentID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Score_ClassId",
-                table: "Score",
+                name: "IX_tbl_score_ClassId",
+                table: "tbl_score",
                 column: "ClassId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Score_CourseID",
-                table: "Score",
+                name: "IX_tbl_score_CourseID",
+                table: "tbl_score",
                 column: "CourseID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Score_PeriodID",
-                table: "Score",
+                name: "IX_tbl_score_PeriodID",
+                table: "tbl_score",
                 column: "PeriodID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Score_StudentID",
-                table: "Score",
+                name: "IX_tbl_score_StudentID",
+                table: "tbl_score",
                 column: "StudentID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ClassAssignement");
+                name: "tbl_classassignement");
 
             migrationBuilder.DropTable(
-                name: "ClassesCourses");
+                name: "tbl_classecourses");
 
             migrationBuilder.DropTable(
-                name: "CourseAssignement");
+                name: "tbl_courseassignement");
 
             migrationBuilder.DropTable(
-                name: "Enrollement");
+                name: "tbl_enrollement");
 
             migrationBuilder.DropTable(
-                name: "Paiment");
+                name: "tbl_payement");
 
             migrationBuilder.DropTable(
-                name: "Percentage");
+                name: "tbl_percentage");
 
             migrationBuilder.DropTable(
-                name: "Score");
+                name: "tbl_score");
 
             migrationBuilder.DropTable(
-                name: "PaiementFor");
+                name: "tbl_paymentreason");
 
             migrationBuilder.DropTable(
-                name: "PaimentType");
+                name: "tbl_paymentype");
 
             migrationBuilder.DropTable(
-                name: "Classe");
+                name: "tbl_classe");
 
             migrationBuilder.DropTable(
-                name: "Course");
+                name: "tbl_course");
 
             migrationBuilder.DropTable(
-                name: "Period");
+                name: "tbl_yearperiod");
 
             migrationBuilder.DropTable(
-                name: "People");
+                name: "tbl_people");
 
             migrationBuilder.DropTable(
-                name: "Department");
+                name: "tbl_departement");
         }
     }
 }
